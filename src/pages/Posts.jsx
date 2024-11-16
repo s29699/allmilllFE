@@ -18,11 +18,13 @@ function Posts() {
     }, [])
     
   return (
+    <>
+    <h3>ALL POSTS</h3>
     <div className='grid grid-cols-3 m-12'>
         {
             posts.map((post) => (
                 <div key={post._id}>
-                <PostCard title={post.title} description={post.description} />
+                <PostCard id={post._id} slug={post.slug} title={post.title} description={post.description} />
                 </div>
             ))
         //   posts.forEach(element => {
@@ -33,6 +35,7 @@ function Posts() {
         //   })
         }
     </div>
+    </>
   )
 }
 

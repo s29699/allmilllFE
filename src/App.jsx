@@ -1,24 +1,39 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './components/Header'
-import PostCard from './components/PostCard'
-import Posts from './pages/Posts'
-import Signup from './pages/Signup'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Layout from './Layout'
+import { Home, Blog, LaunchPad, Premium, Weapon, Discuss, Login, Signup, Posts, Createpost, Article } from './pages/index.js'
 
-import Login from './pages/Login'
-import Createpost from './pages/Createpost'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <div className=''>
-      <Header />
+
+      <Router>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+             <Route index element={<Home/> } />
+             <Route path='discuss' element={<Discuss />} />
+             <Route path='weapon' element={<Weapon />} />
+             <Route path='blog' element={<Blog />}>
+                <Route path='allpost' element={<Posts />} />
+                <Route path='create' element={<Createpost />} />
+                <Route path=':slug' element={<Article />} />            
+             </Route>
+             <Route path='pro' element={<Premium />} />
+             <Route path='yourweb' element={<LaunchPad />} />
+             <Route path='login' element={<Login />} /> 
+             <Route path='signup' element={<Signup />} />
+          </Route>
+        </Routes>
+      </Router>
+
+
+      {/* <Header />
       <Signup />
       <Login />
-      <Createpost />
+      <Createpost /> */}
 
       {/* <Posts /> */}
     </div>
