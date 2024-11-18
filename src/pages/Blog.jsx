@@ -1,7 +1,8 @@
 import React, { useRef } from 'react'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 function Blog() {
+  const navigate = useNavigate();
   const postRef = useRef();
   const getAllPost = async () => {
     // const response = await fetch("http://localhost:7000/api/v1/users/login");
@@ -23,23 +24,32 @@ function Blog() {
     console.log("response: ", response);
   }
 
+  // const bringPost = async () => {
+  //   const pageno = 1;
+  //   navigate(`/allpost/${pageno}`)
+  // }
   return (
     <div>
-      <h3>Blog</h3>
       <input
+        className="mx-2 p-2"
         ref={postRef}
         type="text"
         placeholder="Search post based on title"
       />
-      <button onClick={searchPosts} >Search</button>
-      <button>
-        <Link to="allpost"> All Post </Link>
+      <button className="border-2 px-4" onClick={searchPosts}>
+        Search
       </button>
-      <button>
+      
+      
+      <button className="mx-8 border-2 px-4">
+        <Link to="allpost"> All Post</Link>
+      </button>
+      <button className="border-2 px-4">
         <Link to="create"> Create Post </Link>
       </button>
-
+      
       <Outlet />
+
     </div>
   );
 }

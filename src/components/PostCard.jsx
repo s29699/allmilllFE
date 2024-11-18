@@ -12,7 +12,7 @@ function PostCard({id, slug, title , description}) {
   return (
     <div 
       className='bg-blue-200 min-h-48 border-2 m-12 flex flex-col justify-between'
-      onClick={openPost}
+      onDoubleClick={openPost}
     >
       <h3>{title}</h3>
       <p>19/01/2024</p>
