@@ -1,19 +1,17 @@
-import React, { useRef } from 'react'
+import React, { useRef} from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 function Blog() {
-  const navigate = useNavigate();
-  const postRef = useRef();
-  const getAllPost = async () => {
-    // const response = await fetch("http://localhost:7000/api/v1/users/login");
-    console.log("from get all post function");
-  }
 
+  // const navigate = useNavigate();
+  const navigate = useNavigate()
+  const postRef = useRef();
+  
   const searchPosts = async () => {
     console.log("from create post function");
     const searchInput = postRef.current.value;
 
-    const response = fetch("http://localhost:7000/api/v1/posts/search", {
+    const response = await fetch("http://localhost:7000/api/v1/posts/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,13 +19,15 @@ function Blog() {
       body: JSON.stringify({ searchInput }),
     });
 
+    if(response){
+      const data =await response.json();
+      const slug = data.post.slug;
+      navigate(`/blog/${slug}`)
+    }
     console.log("response: ", response);
   }
 
-  // const bringPost = async () => {
-  //   const pageno = 1;
-  //   navigate(`/allpost/${pageno}`)
-  // }
+  
   return (
     <div>
       <input

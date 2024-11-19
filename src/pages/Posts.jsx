@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostCard from '../components/PostCard';
 
 function Posts() {
@@ -12,6 +12,7 @@ function Posts() {
             method:"GET"
           }
         );
+        
         const data = await response.json();
         setPosts(data.allposts);
     }
@@ -53,6 +54,7 @@ function Posts() {
           //     />
           //   })
         }
+        {posts.length < 1 && <p> No more posts...</p>}
         <button 
          className="px-2 mx-4" 
          onClick={prevbutton}>
