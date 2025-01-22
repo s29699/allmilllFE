@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import UpdatePost from './UpdatePost';
-import { UpdateContext } from '../context/UpdateContext.jsx';
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import UpdatePost from './UpdatePost.jsx';
+import { UpdateContext } from '../../context/UpdateContext.jsx';
 
 function Article() {
     const navigate = useNavigate();
@@ -19,6 +19,7 @@ function Article() {
         });
         console.log("response in Article: ", response);
         const data = await response.json();
+        data.post.author = data.user.username;
         setPost(data.post);
         setIsLoading(false);
     }
@@ -50,14 +51,13 @@ function Article() {
     return (<div>Loading.....</div>)
   }
 
-  
 
   return (
     <div>
         {isEdited && <UpdatePost slug={slug} />}
         
         <h2>{post.title}</h2>
-        <p>{post.author}</p>
+        <p> <Link to={`/profile/${post.author}`} >{post.author} </Link></p>
         <p>{post.lastUpdated}</p>
         <h4>{post.description}</h4>
         <button className='mx-2 px-2 border-2' onClick={handleDelete} >Delete</button>

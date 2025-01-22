@@ -40,7 +40,6 @@ function Blog() {
         Search
       </button>
       
-      
       <button className="mx-8 border-2 px-4">
         <Link to="allpost"> All Post</Link>
       </button>

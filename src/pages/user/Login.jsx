@@ -1,9 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { UserContext } from '../../context/UserContext';
 
 function Login() {
 
     const unRef = useRef(null);
     const passRef = useRef(null);
+    const {setUser} = useContext(UserContext);
     
     const handleLogin = async () => {
         const username = unRef.current.value;
@@ -26,6 +28,7 @@ function Login() {
             passRef.current.value = '';
             console.log("response.data: ", val.data);
             localStorage.setItem('authToken',val.data);
+            setUser(val);
         }
         
     }

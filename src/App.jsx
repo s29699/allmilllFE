@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
 import { Home, Blog, LaunchPad, Premium, Weapon, Discuss, Login, Signup, Posts, Createpost, Article } from './pages/index.js'
-import EditPost from './pages/EditPost.jsx'
+import EditPost from './pages/blog/EditPost.jsx'
+import Profile from './pages/profile/Profile.jsx'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
              <Route index element={<Home/> } />
              <Route path='discuss' element={<Discuss />} />
              <Route path='weapon' element={<Weapon />} />
+             <Route path='profile/:username' element={<Profile />} />
              <Route path='blog' element={<Blog />}>
                 <Route path='allpost' element={<Posts />} />
                 <Route path='create' element={<Createpost />} />

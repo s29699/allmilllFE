@@ -1,5 +1,5 @@
 import React, { useRef,useContext } from 'react'
-import { UpdateContext } from '../context/UpdateContext.jsx'
+import { UpdateContext } from '../../context/UpdateContext.jsx'
 import { useNavigate } from 'react-router-dom';
 
 function UpdatePost({slug}) {
