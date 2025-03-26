@@ -8,6 +8,7 @@ function Article() {
     const {slug} = useParams();
     console.log("slug in Article: ", slug)
     const [post, setPost] = useState(null);
+    const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
     // const [isEdited, setIsEdited] = useState(false)
     const {isEdited, putTrue} = useContext(UpdateContext);
@@ -19,8 +20,9 @@ function Article() {
         });
         console.log("response in Article: ", response);
         const data = await response.json();
-        data.post.author = data.user.username;
+        // data.post.author = data.user.username;
         setPost(data.post);
+        setUser(data.user);
         setIsLoading(false);
     }
     useEffect(() => {
@@ -57,7 +59,7 @@ function Article() {
         {isEdited && <UpdatePost slug={slug} />}
         
         <h2>{post.title}</h2>
-        <p> <Link to={`/profile/${post.author}`} >{post.author} </Link></p>
+        <p> <Link to={`/profile/${user.username}`} >{user.username} </Link></p>
         <p>{post.lastUpdated}</p>
         <h4>{post.description}</h4>
         <button className='mx-2 px-2 border-2' onClick={handleDelete} >Delete</button>
