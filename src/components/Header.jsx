@@ -14,7 +14,7 @@ function Header() {
   }, [])
 
   return (
-    <div className='flex mx-auto py-4 bg-purple-800 text-white'>
+    <div className='sticky top-0 z-20 flex mx-auto py-4 bg-purple-800 text-white'>
       <h2 className='mx-auto'>
        <Link to="/" > allmil </Link> 
       </h2>
