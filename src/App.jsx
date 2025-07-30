@@ -3,6 +3,7 @@ import Layout from './Layout'
 import { Home, Blog, LaunchPad, Premium, Weapon, Discuss, Login, Signup, Posts, Createpost, Article } from './pages/index.js'
 import EditPost from './pages/blog/EditPost.jsx'
 import Profile from './pages/profile/Profile.jsx'
+import { UserProvider } from './context/UserContext.jsx'
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <div className=''>
+      <UserProvider>
 
       <Router>
         <Routes>
@@ -32,6 +34,7 @@ function App() {
         </Routes>
       </Router>
 
+      </UserProvider>
 
       {/* <Header />
       <Signup />

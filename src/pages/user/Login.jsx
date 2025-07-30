@@ -5,7 +5,7 @@ function Login() {
 
     const unRef = useRef(null);
     const passRef = useRef(null);
-    const {setUser} = useContext(UserContext);
+    const {setUser, setUsrname } = useContext(UserContext);
     
     const handleLogin = async () => {
         const username = unRef.current.value;
@@ -29,6 +29,7 @@ function Login() {
             console.log("response.data: ", val.data);
             localStorage.setItem('authToken',val.data);
             setUser(val);
+            setUsrname(username);
         }
         
     }

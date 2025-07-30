@@ -1,35 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { UserContext } from '../../context/UserContext';
+
 
 function Profile() {
-  const {username} = useParams();
-  console.log("username", username);
+  // const {username} = useParams();
+  // console.log("username", username);
   
-  const [post, setPost] = useState(null);
+  const {usrname} = useContext(UserContext);
+  console.log("usrname", usrname);
+
+  const [posts, setPosts] = useState([]);
 
   const fetchPost = async () => {
     const response = await fetch(
-      `http://localhost:7000/api/v1/users/profile/${username}/posts`,{
+      `http://localhost:7000/api/v1/users/profile/${usrname}/posts`,{
         method:"GET"
       }
     );
 
     const data = await response.json();
-    setPost(data);
+    console.log("data", data);  
+    setPosts(data.post);
+    console.log(typeof(data.post));
+    console.log("post", data.post);
   }
 
   return (
     <div>
       Profile
-      <p>{username}</p>
+      <p>{usrname}</p>
       <button onClick={fetchPost}>fetch all post</button>
       <div className="">POST</div>
-      {/* <ul>
-        {post.map((p) => (
-          <li key={p.id}>{p.title}</li>
+      <ul>
+        {Array.isArray(posts) && posts?.map((p) => (
+          <li key={p._id}>{p.title}</li>
         ))}
-      </ul> */}
-      {post}
+      </ul>
+      {/* {posts && <div>aaya</div>}
+      {posts && <div>{posts}</div>} */}
     </div>
   );
 }

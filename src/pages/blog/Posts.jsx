@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from '../../components/PostCard';
 
+// This is to display all the posts.
+
 function Posts() {
 
     const [posts, setPosts] = useState([]);
