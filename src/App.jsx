@@ -4,6 +4,8 @@ import { Home, Blog, LaunchPad, Premium, Weapon, Discuss, Login, Signup, Posts, 
 import EditPost from './pages/blog/EditPost.jsx'
 import Profile from './pages/profile/Profile.jsx'
 import { UserProvider } from './context/UserContext.jsx'
+import DisplayTopic from './pages/discussion/DisplayTopic.jsx'
+import Feed from './pages/discussion/Feed.jsx'
 
 
 function App() {
@@ -17,7 +19,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
              <Route index element={<Home/> } />
-             <Route path='discuss' element={<Discuss />} />
+             <Route path='discuss' element={<Discuss />}>
+                <Route path='' element={<Feed />} />
+                <Route path=':slug' element={<DisplayTopic />} />
+             </Route>
+             {/* <Route path='/discuss/:uuid' element={<DisplayTopic />} /> */}
              <Route path='weapon' element={<Weapon />} />
              <Route path='profile/:username' element={<Profile />} />
              <Route path='blog' element={<Blog />}>

@@ -1,12 +1,15 @@
 import React, { useContext, useRef } from 'react'
 import { UserContext } from '../../context/UserContext';
+import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
     const unRef = useRef(null);
     const passRef = useRef(null);
-    const {setUser, setUsrname } = useContext(UserContext);
-    
+    const {setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
     const handleLogin = async () => {
         const username = unRef.current.value;
         const password = passRef.current.value;
@@ -26,10 +29,14 @@ function Login() {
             const val = await response.json();
             unRef.current.value = '';
             passRef.current.value = '';
-            console.log("response.data: ", val.data);
-            localStorage.setItem('authToken',val.data);
-            setUser(val);
-            setUsrname(username);
+            console.log("response.data: ", val.data.token);
+            localStorage.setItem('authToken',val.data.token);
+            // console.log(jwtDecode(val.data));
+            console.log("1");
+            setUser(val.data);
+            console.log("3");
+            // setUsrname(username);
+            navigate('/');
         }
         
     }
