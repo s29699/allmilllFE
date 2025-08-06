@@ -6,6 +6,7 @@ import Profile from './pages/profile/Profile.jsx'
 import { UserProvider } from './context/UserContext.jsx'
 import DisplayTopic from './pages/discussion/DisplayTopic.jsx'
 import Feed from './pages/discussion/Feed.jsx'
+import { TweetProvider } from './context/discuss/TopicContext.jsx'
 
 
 function App() {
@@ -14,14 +15,16 @@ function App() {
   return (
     <div className=''>
       <UserProvider>
+             <TweetProvider>
 
       <Router>
         <Routes>
           <Route path='/' element={<Layout />}>
              <Route index element={<Home/> } />
+
              <Route path='discuss' element={<Discuss />}>
                 <Route path='' element={<Feed />} />
-                <Route path=':slug' element={<DisplayTopic />} />
+                <Route path=':username/:uuid' element={<DisplayTopic />} />
              </Route>
              {/* <Route path='/discuss/:uuid' element={<DisplayTopic />} /> */}
              <Route path='weapon' element={<Weapon />} />
@@ -39,6 +42,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+             </TweetProvider>
 
       </UserProvider>
 

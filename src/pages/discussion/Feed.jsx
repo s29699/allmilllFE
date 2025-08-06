@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TweetContext } from "../../context/discuss/TopicContext";
 
 function Feed () {
 
+    const {setTweet} = useContext(TweetContext);
     const [topics, setTopics] = useState([]);
         const postRef = useRef();
         const token = localStorage.getItem("authToken");
@@ -89,7 +91,11 @@ function Feed () {
                 <div
                 key={p._id}
                 className="bg-white p-4 mb-3 rounded-lg shadow hover:shadow-lg transition"
-                onClick={() => {navigate(`/discuss/${p.uuid}`)}}
+                onClick={() => {
+                  setTweet(p);
+                  console.log("p from feed", p);
+                  navigate(`/discuss/${p.writer.username}/${p.uuid}`)
+                }}
                 >
                   <p onClick={ () => {navigate(`/profile/${p.writer.username}`)}}>{p.writer.username}</p>
                   <p className="text-xs ">created on: {formattedDate}</p>
