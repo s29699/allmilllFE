@@ -16,6 +16,7 @@ export const UserProvider = ({children}) => {
             setUser(null);
             return false;
         }
+        setUser(token);
         // login time pe hi backend se aayi value user me set kar denge. toh iski jarurat nahi hai 
         // const {username, id} = jwtDecode(token);
         
