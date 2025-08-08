@@ -4,16 +4,17 @@
 
   function Header() {
     
-    const {isLogged, user, setUser, Logout} = useContext(UserContext);
+    const {isLogged, user, username, Logout} = useContext(UserContext);
     // const {isLogged, user, usrname, setUser, setUsrname} = useContext(UserContext);
     // const name = user?user.username:"no user";
-    const name = user?.username;
+    // const name = user?.username;
     const [loginCheck, setLoginCheck] = useState(false)
     // const loginCheck = isLogged();
-    // console.log(loginCheck);
+    console.log("loginCheck",loginCheck);
+    console.log("username", username);
     useEffect(()=>{
       setLoginCheck(isLogged())
-    }, [user,loginCheck])
+    }, [])
     
     const handleLogout = () => {
       Logout();
@@ -35,7 +36,7 @@
         <div className='mx-auto flex border-2'>
           {!loginCheck && <button className='mx-2'> <Link to="/signup" >Signup </Link></button> }
           {!loginCheck && <button className='mx-2'> <Link to="/login" >Login </Link></button> }
-          {loginCheck && <div> <Link to={`/profile/${user?.username}`} >Profile</Link> </div>}
+          {loginCheck && <div> <Link to={`/profile/${username}`} >Profile</Link> </div>}
           {loginCheck && <button className='ml-2' onClick={handleLogout} >Logout</button>}
         </div>
       </div>
