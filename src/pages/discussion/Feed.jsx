@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TweetContext } from "../../context/discuss/TopicContext";
+import TopicCard from "../../components/discuss/TopicCard";
 
 function Feed () {
 
@@ -83,24 +84,29 @@ function Feed () {
                 <h2>{p.post}</h2>
               </div>
             ))} */}
+
             {topics?.map((p) => {
               const date = new Date(p.createdAt);
               const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
               return (
-
-                <div
-                key={p._id}
-                className="bg-white p-4 mb-3 rounded-lg shadow hover:shadow-lg transition"
-                onClick={() => {
-                  setTweet(p);
-                  console.log("p from feed", p);
-                  navigate(`/discuss/${p.writer.username}/${p.uuid}`)
-                }}
-                >
-                  <p onClick={ () => {navigate(`/profile/${p.writer.username}`)}}>{p.writer.username}</p>
-                  <p className="text-xs ">created on: {formattedDate}</p>
-                  <h2 className="text-md font-medium text-gray-800">{p.post}</h2>
-                </div>
+                <TopicCard
+                  key={p._id} 
+                  ele={p}
+                  etype="norm"
+                />
+                // <div
+                //   key={p._id}
+                //   className="bg-white p-4 mb-3 rounded-lg shadow hover:shadow-lg transition"
+                //   onClick={() => {
+                //     setTweet(p);
+                //     console.log("p from feed", p);
+                //     navigate(`/discuss/${p.writer.username}/${p.uuid}`)
+                //   }}
+                // >
+                //   <p onClick={ () => {navigate(`/profile/${p.writer.username}`)}}>{p.writer.username}</p>
+                //   <p className="text-xs ">created on: {formattedDate}</p>
+                //   <h2 className="text-md font-medium text-gray-800">{p.post}</h2>
+                // </div>
               );
             })}
           </div>        

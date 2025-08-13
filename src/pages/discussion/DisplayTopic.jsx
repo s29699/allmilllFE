@@ -53,6 +53,22 @@ function DisplayTopic () {
         setReply(repdata.replies);
     }
 
+    const getReplyReply = async (clickedtwt) => {
+        console.log("clickedtwt", clickedtwt);
+        const replies = await fetch(
+            `http://localhost:7000/api/v1/discuss/fetchreply/${clickedtwt.uuid}`,
+            {
+                method: "GET",
+            }
+        )
+
+        const repdata = await replies.json();
+        console.log("repdata", repdata);
+        setReply(repdata.replies);
+    }
+
+
+
     console.log("3");
     console.log("useParams in Display topic", useParams())
     console.log("uuid", uuid);
@@ -98,7 +114,7 @@ function DisplayTopic () {
 
     return (
         <>
-            <div>
+            {/* <div>
             {   tweet && !twt &&
                 <div className="border-2 border-red-500">
                     Hello World {username} with {uuid}
@@ -116,7 +132,7 @@ function DisplayTopic () {
                     }
                 </div>
             }
-            </div>
+            </div> */}
             
             <div>
                 {twt && <div>{twt.post}</div>}
@@ -150,7 +166,8 @@ function DisplayTopic () {
                 Array.isArray(reply) && 
                 reply.map((r)=> (
                     <div 
-                    key={r._id}
+                    key={r._id} 
+                    // onClick={() => getReplyReply(r)}
                     onClick={() => (navigate(`/discuss/${r.writer.username}/${r.uuid}`))}
                     className="border border-green-700">
                         <p> {r.post} </p>

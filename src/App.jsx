@@ -7,6 +7,7 @@ import { UserProvider } from './context/UserContext.jsx'
 import DisplayTopic from './pages/discussion/DisplayTopic.jsx'
 import Feed from './pages/discussion/Feed.jsx'
 import { TweetProvider } from './context/discuss/TopicContext.jsx'
+import Test from './pages/discussion/Test.jsx'
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
 
              <Route path='discuss' element={<Discuss />}>
                 <Route path='' element={<Feed />} />
-                <Route path=':username/:uuid' element={<DisplayTopic />} />
+                {/* <Route path=':username/:uuid' element={<DisplayTopic />} /> */}
+                <Route path=':username/:uuid' element={<Test />} />
              </Route>
              {/* <Route path='/discuss/:uuid' element={<DisplayTopic />} /> */}
              <Route path='weapon' element={<Weapon />} />

@@ -7,6 +7,8 @@ function Profile() {
   const {username} = useParams();
   console.log("username from params", username);
   
+  // if(useParams()){}
+
   // const {user} = useContext(UserContext);
   // console.log("usrname from context", user);
 
