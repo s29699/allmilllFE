@@ -26,16 +26,6 @@ function DisplayTopic () {
         console.log("data", data);
         setTwt(data.topic);
 
-        // const replies = await fetch(
-        //     `http://localhost:7000/api/v1/discuss/fetchreply/${uuid}`,
-        //     {
-        //         method: "GET",
-        //     }
-        // )
-
-        // const repdata = await replies.json();
-        // console.log("repdata", repdata);
-        // // setReply(repdata.replies);
     }
 
     console.log("2");
